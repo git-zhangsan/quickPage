@@ -1,0 +1,9 @@
+<%- include header %>
+<%- include funlist%>
+        <form method="post">
+        	<input type="text" id="addnote_title" name="title" placeholder="题目" class="title"/>
+            <textarea rows="15" id="addnote_con" name="content" class="content" placeholder="正文"></textarea>
+            <input type="text" name="tags" placeholder="标签(用,隔开)" class="tags"/>
+            <input type="submit" id="addnote_sub_btn" value="提交笔记" class="submit"/>
+        </form>
+<%- include footer %>

@@ -1,0 +1,23 @@
+<%- include header %>
+<%- include funlist %>
+	<% if (note.length > 0) { %>
+	 	<% for(var i = 0; i < note.length; i++) { %>
+	 		<p><%= note[i].title%></p>
+	 		<li>
+                <div><%= note[i].time %></div>
+                <h3><a class="note_title" href="/notes/<%= note[i].author %>/<%= note[i]._id %>"><%= note[i].title %></a></h3>
+                <div>
+                    <span class="read_times">阅读100</span>
+                    <% if (note[i].tags.length > 0) { %>
+                        <% for (var j = 0; j < note[i].tags.length; j++) { %>
+                        <a href="" class="tag"><%= note[i].tags[j] %></a>
+                        <% } %>
+                    <% } %>
+                </div>
+            </li>
+	 	<%}%>
+	<%}%>
+
+<%-mark%>
+
+<%- include footer %>
