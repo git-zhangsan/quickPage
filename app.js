@@ -2,7 +2,7 @@
  * @Author: zhanghuiming
  * @Date:   2017-06-21 16:30:38
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-08-21 17:08:30
+ * @Last Modified time: 2017-08-22 07:40:07
  */
 
 'use strict';
@@ -51,8 +51,8 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 
 app.use(session({
-	resave: false, //添加这行  
-	saveUninitialized: true, //添加这行
+	resave: false,
+	saveUninitialized: true,
 	secret: settings.cookieSecret,
 	key: settings.db, //cookie name
 	cookie: {
