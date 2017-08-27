@@ -2,42 +2,48 @@
  * @Author: zhanghuiming
  * @Date:   2017-07-28 14:05:05
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-08-21 15:54:04
+ * @Last Modified time: 2017-08-24 15:58:47
  */
 
 'use strict';
-// var express = require('express'),
-// 	router = express.Router();
+var express = require('express'),
+	router = express.Router();
+var User = require('../models/user.js');
+var React = require('react');
+var ReactDOMServer = require("react-dom/server");
+var HomePage = require('../../client/components/HomePage').default;
 
-// import {
-// 	renderToString
-// } from 'react-dom/server';
-// import MyComponent from '../../client/components/HomePage';
-// // router.get('/', function(req, res) {
-// // 	res.render('login', {
-// // 		mark: renderToString(<MyComponent/>)
-// // 	});
-// // });
+router.get('/', function(req, res) {
+	res.render('login', {
+		user: req.session.user,
+		mark: ReactDOMServer.renderToString(<HomePage title={req.session.user.name}/>)
+	})
+});
 
-// function handleRender(req, res) {
-// 	const html = renderToString(<MyComponent title="张三"/>);
-// 	res.send(renderFullPage(html));
-// }
+router.post('/', function(req, res) {
+	var password = req.body.password;
+	User.get(req.body.username, function(err, user) {
+		if (!user) {
+			req.flash('error');
+			req.flash('error', '用户不存在！');
+			console.log('用户名不存在');
+			return res.redirect('/login');
+		}
+		//检查密码是否一致
+		if (user.password != password) {
+			req.flash('error');
+			req.flash('error', '密码错误！');
+			console.log('密码错误！');
+			return res.redirect('login');
+		}
+		//用户名和密码匹配之后，将用户信息存入session
+		req.session.user = user;
+		req.flash('user');
+		req.flash('user', user);
+		req.flash('success');
+		req.flash('success', '登录成功！');
+		res.redirect('/');
+	})
+});
 
-// function renderFullPage(html) {
-// 	return `
-//     <!doctype html>
-//     <html>
-//       <head>
-//         <title>React Server Rendering</title>
-//       </head>
-//       <body>
-//         <div id="app">${html}</div>
-//         <script src="/page1/bundle.js"></script>
-//       </body>
-//     </html>
-//     `
-// }
-
-
-// module.exports = router
+module.exports = router;

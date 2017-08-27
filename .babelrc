@@ -1,7 +1,24 @@
 {
-	"presets": [
-  	"es2015",
-  	"react",
- 	],
-	"plugins": []
+  "presets": [
+   "es2015",
+	"react",
+  ],
+  "plugins": [
+     "transform-class-properties",
+    "transform-decorators",
+    "transform-object-rest-spread",
+    "transform-runtime"
+  ],
+    "env": {
+      "node": {
+        "plugins": [
+            [
+                "babel-plugin-transform-require-ignore",
+                {
+                    "extensions": [".scss", ".css"]
+                }
+            ]
+        ]
+      }
+    }
 }

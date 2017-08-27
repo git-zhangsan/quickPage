@@ -2,14 +2,12 @@
  * @Author: zhanghuiming
  * @Date:   2017-06-21 16:30:38
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-08-22 07:40:07
+ * @Last Modified time: 2017-08-27 13:37:53
  */
 
 'use strict';
 //开发环境，静态文件使用热插拔
 
-
-var compiler = webpack(webpackConfig);
 var express = require('express'),
 	path = require('path'),
 	consolidate = require('consolidate');
@@ -25,13 +23,8 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from './webpack.config';
-import React from 'react';
-import {
-	renderToString,
-	renderToStaticMarkup
-} from 'react-dom/server';
-import MyComponent from './client/components/HomePage';
-//var MyComponent = React.createFactory(require('./client/components/HomePage'));
+var compiler = webpack(webpackConfig);
+
 var isDev = process.env.NODE_ENV !== 'production';
 var app = express();
 var port = 3000;
@@ -72,23 +65,20 @@ app.use(function(req, res, next) {
 	next();
 });
 
-
-
 // 热插拔
-app.use(webpackDevMiddleware(compiler, {
-	publicPath: webpackConfig.output.publicPath,
-	contentBase: './client/',
-	hot: true,
-	quiet: false,
-	noInfo: false,
-	lazy: false,
-	stats: 'normal'
-}));
-app.use(webpackHotMiddleware(compiler, {
-	path: '/__webpack_hmr'
-}));
-//app.use(handleRender);
+// app.use(webpackDevMiddleware(compiler, {
+// 	publicPath: webpackConfig.output.publicPath,
+// 	contentBase: './client/',
+// 	hot: true,
+// 	quiet: false,
+// 	noInfo: false,
+// 	lazy: false,
+// 	stats: 'normal'
+// }));
 
+// app.use(webpackHotMiddleware(compiler, {
+// 	path: '/__webpack_hmr'
+// }));
 
 require('./server/routes')(app);
 
@@ -98,29 +88,6 @@ var http = require('http');
 var server = http.createServer(app);
 reload(server, app);
 
-
 server.listen(port, function() {
 	console.log('App (dev) is now running on port 3000!');
 });
-
-
-
-function handleRender(req, res) {
-	const html = renderToString(<MyComponent title="张三"/>);
-	res.send(renderFullPage(html));
-}
-
-function renderFullPage(html) {
-	return `
-    <!doctype html>
-    <html>
-      <head>
-        <title>React Server Rendering</title>
-      </head>
-      <body>
-        <div id="app">${html}</div>
-        <script src="/page1/bundle.js"></script>
-      </body>
-    </html>
-    `
-}

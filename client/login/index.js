@@ -2,13 +2,13 @@
  * @Author: zhanghuiming
  * @Date:   2017-07-31 16:15:28
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-08-01 20:54:21
+ * @Last Modified time: 2017-08-27 14:01:39
  */
 
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import './style.scss';
 class Login extends React.Component {
 
 	constructor(props) {
