@@ -2,7 +2,7 @@
  * @Author: zhanghuiming
  * @Date:   2017-06-21 14:56:28
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-08-27 13:51:12
+ * @Last Modified time: 2017-09-07 17:14:23
  */
 
 'use strict';
@@ -14,7 +14,7 @@ var publicPath = '/';
 var hotMiddlewareScript = 'webpack-hot-middleware/client?noInfo=true&reload=true';
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
-	entry: './client/main.js',
+	entry: ['./client/main.js', hotMiddlewareScript],
 	// entry: {
 	// 	page1: ['./client/', hotMiddlewareScript],
 	// 	login: ['./client/login', hotMiddlewareScript]

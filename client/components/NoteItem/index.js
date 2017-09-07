@@ -2,7 +2,7 @@
  * @Author: zhanghuiming
  * @Date:   2017-08-21 16:30:22
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-08-21 17:00:57
+ * @Last Modified time: 2017-09-07 17:34:43
  */
 'use strict';
 import React from 'react';
@@ -17,9 +17,9 @@ export default class NoteItem extends React.Component {
 	render() {
 		var markHTML = this.props.content.map(function(item, i) {
 			return (
-				<div  key={i}>
+				<div  key={i} className="TEST">
 					<p>{item.time}</p> 
-					<h3> {item.title} </h3>
+					<h3> {item.title}</h3>
 					<TagItem tags={item.tags}/>
 				</div>
 			)

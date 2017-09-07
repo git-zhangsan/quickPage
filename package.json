@@ -4,7 +4,8 @@
   "description": "say something....",
   "main": "main.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=dev BABEL_ENV='node' pm2 start index.js --name quick-server",
+    "start": "cross-env NODE_ENV=dev BABEL_ENV='node' pm2 start index.js --watch --name quick-server",
+    "dev": "supervisor -i client index",
     "nodemon": "cross-env BABEL_ENV='node' nodemon index.js",
     "build": "webpack --colors --profile --display-modules",
     "build:client": "webpack --config webpack.config.js",

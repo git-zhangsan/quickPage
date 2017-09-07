@@ -2,19 +2,17 @@
  * @Author: zhanghuiming
  * @Date:   2017-07-31 16:15:28
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-08-27 14:01:39
+ * @Last Modified time: 2017-09-07 17:35:14
  */
 
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.scss';
-class Login extends React.Component {
-
+export default class Login extends React.Component {
 	constructor(props) {
 		super(props);
 	}
-
 	render() {
 		return (
 			<div>
@@ -28,7 +26,4 @@ class Login extends React.Component {
         	</div>
 		);
 	}
-
 }
-
-ReactDOM.render(<Login/>, document.getElementById("app"));

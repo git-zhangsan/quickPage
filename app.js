@@ -2,7 +2,7 @@
  * @Author: zhanghuiming
  * @Date:   2017-06-21 16:30:38
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-08-27 13:37:53
+ * @Last Modified time: 2017-09-07 17:11:57
  */
 
 'use strict';
@@ -76,9 +76,9 @@ app.use(function(req, res, next) {
 // 	stats: 'normal'
 // }));
 
-// app.use(webpackHotMiddleware(compiler, {
-// 	path: '/__webpack_hmr'
-// }));
+app.use(webpackHotMiddleware(compiler, {
+	path: '/__webpack_hmr'
+}));
 
 require('./server/routes')(app);
 

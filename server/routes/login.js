@@ -2,7 +2,7 @@
  * @Author: zhanghuiming
  * @Date:   2017-07-28 14:05:05
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-08-24 15:58:47
+ * @Last Modified time: 2017-09-07 16:48:48
  */
 
 'use strict';
@@ -11,12 +11,12 @@ var express = require('express'),
 var User = require('../models/user.js');
 var React = require('react');
 var ReactDOMServer = require("react-dom/server");
-var HomePage = require('../../client/components/HomePage').default;
+var Login = require('../../client/login').default;
 
 router.get('/', function(req, res) {
 	res.render('login', {
 		user: req.session.user,
-		mark: ReactDOMServer.renderToString(<HomePage title={req.session.user.name}/>)
+		mark: ReactDOMServer.renderToString(<Login/>)
 	})
 });
 
