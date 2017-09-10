@@ -2,7 +2,7 @@
  * @Author: zhanghuiming
  * @Date:   2017-07-28 14:05:05
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-09-07 16:48:48
+ * @Last Modified time: 2017-09-10 14:30:32
  */
 
 'use strict';
@@ -26,14 +26,12 @@ router.post('/', function(req, res) {
 		if (!user) {
 			req.flash('error');
 			req.flash('error', '用户不存在！');
-			console.log('用户名不存在');
 			return res.redirect('/login');
 		}
 		//检查密码是否一致
 		if (user.password != password) {
 			req.flash('error');
 			req.flash('error', '密码错误！');
-			console.log('密码错误！');
 			return res.redirect('login');
 		}
 		//用户名和密码匹配之后，将用户信息存入session

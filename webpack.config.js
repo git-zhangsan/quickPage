@@ -2,7 +2,7 @@
  * @Author: zhanghuiming
  * @Date:   2017-06-21 14:56:28
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-09-07 17:14:23
+ * @Last Modified time: 2017-09-10 19:20:28
  */
 
 'use strict';
@@ -38,11 +38,7 @@ module.exports = {
 			test: /\.scss$/,
 			loader: ExtractTextPlugin.extract({
 				loader: [{
-					loader: 'css-loader',
-					query: {
-						localIdentName: '[hash:8]',
-						modules: true
-					}
+					loader: 'css-loader'
 				}, {
 					loader: 'postcss-loader'
 				}, {

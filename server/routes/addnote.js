@@ -2,18 +2,21 @@
  * @Author: zhanghuiming
  * @Date:   2017-08-24 15:59:41
  * @Last Modified by:   zhanghuiming
- * @Last Modified time: 2017-08-24 16:07:35
+ * @Last Modified time: 2017-09-10 18:17:52
  */
 var express = require('express'),
 	router = express.Router();
 var Note = require('../models/note.js');
-
+var React = require('react');
+var ReactDOMServer = require("react-dom/server");
+var NotePage = require('../../client/addnote').default;
 router.get('/', function(req, res) {
 	res.render('addnote', {
 		user: req.session.user,
 		success: req.flash('success').toString(),
 		error: req.flash('error').toString(),
-		status: 'add'
+		status: 'add',
+		markHTML: ReactDOMServer.renderToString(<NotePage/>)
 	});
 });
 
